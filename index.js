@@ -19,7 +19,7 @@ function getMedian(window) {
         return a - b
     })
 
-     let Median
+    let Median
 
     if (window.length % 2 === 0) {
         i1 = window.length / 2 - 1
@@ -37,12 +37,11 @@ function getMovingMedian(arr) {
     
     let n = arr[0]
     arr.shift()
-    let resultsArr = []
+    let resultsStr = ''
     
     let windowSize;
 
     for (let i = 0; i < arr.length; i++) {
-        console.log()
         if (i + 1 < n) {
             windowSize = i + 1
         } else {
@@ -50,21 +49,24 @@ function getMovingMedian(arr) {
         }
         let window = getCurrentWidow(arr, windowSize, i, n)
         let result = getMedian(window)
-        resultsArr.push(result)
+        i === arr.length - 1 ?  resultsStr += result : resultsStr += result + ',' 
     }
 
-    return resultsArr
+    return resultsStr
 }
 
+// Find the Moving Median for each item of an array based on N-1 and its predecessors where N is the sliding window size. The first item in the array is the sliding window size. 
+// The median will be calculated from a smaller window size until the window size is reached.
+// The final output should be a string with the moving median corresponding to each item in the original array separated by commas
 
 console.log(getMovingMedian([3,1,3,5,10,6,4,3,1]))
-// output: [1,2,3,5,6,6,4,3]
+// output: 1,2,3,5,6,6,4,3
 
 console.log(getMovingMedian([5,2,4,6]))
-// output: [2,3,4]
+// output: 2,3,4
 
 console.log(getMovingMedian([3,0,0,-2,0,2,0,-2]))
-// output: [0,0,0,0,0,0,0]
+// output: 0,0,0,0,0,0,0
 
 
 
